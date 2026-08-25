@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+}
+
+/* Visible keyboard focus everywhere — never suppressed */
+:focus-visible {
+  outline: 2px solid #5eead4;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background-color: #5eead4;
+  color: #0b0f14;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Signature waveform element — a row of bars pulsing at slightly offset
+   phases to suggest a live signal/audio waveform. Used in the hero and as a
+   section divider. */
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+}
+
+.waveform span {
+  display: block;
+  width: 3px;
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #33d6ff, #16b8dd);
+  transform-origin: center;
+}
+
+.waveform span:nth-child(1) { animation-delay: 0ms; }
+.waveform span:nth-child(2) { animation-delay: 120ms; }
+.waveform span:nth-child(3) { animation-delay: 240ms; }
+.waveform span:nth-child(4) { animation-delay: 360ms; }
+.waveform span:nth-child(5) { animation-delay: 480ms; }
+.waveform span:nth-child(6) { animation-delay: 600ms; }
+.waveform span:nth-child(7) { animation-delay: 720ms; }
+
+/* Subtle scanline / grid texture used sparingly behind the hero */
+.grid-texture {
+  background-image:
+    linear-gradient(to right, rgba(2, 4, 123, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(2, 4, 123, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
