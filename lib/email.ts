@@ -10,15 +10,6 @@ const resendApiKey = process.env.RESEND_API_KEY;
 const organizerEmail = process.env.ORGANIZER_EMAIL;
 const fromAddress = process.env.EMAIL_FROM || "Tech & Career Talk 0.1<onboarding@resend.dev>";
 
-if (!resendApiKey) {
-  // Fail loudly at startup rather than silently dropping registration emails.
-  console.warn(
-    "[email] RESEND_API_KEY is not set. Emails will fail until it is configured."
-  );
-}
-
-const resend = new Resend(resendApiKey);
-
 interface SendRegistrationEmailArgs {
   registration: RegistrationInput;
   registrationId: string;
@@ -32,9 +23,15 @@ export async function sendRegistrationEmail({
   createdAt,
   pdfBuffer,
 }: SendRegistrationEmailArgs) {
+  if (!resendApiKey) {
+    throw new Error("RESEND_API_KEY environment variable is not configured.");
+  }
+
   if (!organizerEmail) {
     throw new Error("ORGANIZER_EMAIL environment variable is not configured.");
   }
+
+  const resend = new Resend(resendApiKey);
 
   const submittedAt = createdAt.toLocaleString("en-US", {
     dateStyle: "long",
