@@ -47,7 +47,7 @@ export default function HomePage() {
               Register for the event
             </Link>
             <p className="font-mono text-xs text-slate">
-              Free to attend · Limited seats
+              FREE REGISTRATION · LIMITED TO 100 SEATS PARTICIPANTS 
             </p>
           </div>
 
