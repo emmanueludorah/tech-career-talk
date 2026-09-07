@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Space_Grotesk, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -25,6 +26,9 @@ export const metadata: Metadata = {
   title: "Tech & Career Talk 0.1 — Registration",
   description:
     "Register for Tech & Career Talk 0.1 — a one-day gathering for developers, designers, and builders working across the stack.",
+  icons: {
+    icon: "/Logo.png",
+  },
 };
 
 export default function RootLayout({
@@ -36,14 +40,16 @@ export default function RootLayout({
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${plexMono.variable}`}>
       <body className="font-body bg-ink text-paper antialiased">
         <header className="mx-auto max-w-5xl px-6 pt-6 sm:px-8">
-          <Image
-            src="/Logo.png"
-            alt="Tech & Career Talk 0.1"
-            width={220}
-            height={80}
-            priority
-            className="h-auto w-48 object-contain"
-          />
+          <Link href="/" aria-label="Tech & Career Talk home">
+            <Image
+              src="/Logo.png"
+              alt="Tech & Career Talk 0.1"
+              width={220}
+              height={80}
+              priority
+              className="h-auto w-48 object-contain"
+            />
+          </Link>
         </header>
         {children}
       </body>
